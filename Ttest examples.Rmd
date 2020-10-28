@@ -9,3 +9,38 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## 1. Confidence Intervals 
+
+```{r}
+otter_length <- c(38, 41, 50, 27, 32, 41, 48, 60, 43) #Create a vector for your sample - impt in actual research look at data visually to make sure a t-distribution & CI will make sense to describe pop 
+
+t.test(otter_length) #Create a t-test 
+```
+- T.test --> mean of sample (most meaningful thing from output), gives a 95% confidence interval (means in that % of samples we would expect to find the population mean within the range given)
+- How to report: give mean with n (sample size). and standard deviation (calculate using sd), then give 95% confidence interval 
+- top 3 lines --> testing that the null hypothesis is mean = 0. This doesn't make sense/ is not meaningful!! 
+
+## T-Test (1-sample t-test)
+
+See a claim that the mean otter length = 50 inches. Use our sample above to test this claim 
+
+```{r}
+otter_test <- t.test(x = otter_length, mu = 50)
+otter_test
+```
+- tests null hypothesis that is meaningful! 
+- p-value -->  if the pop mean is 50 inches then there is a 4.44% chance that you could have randomly taken a sample from a population that has a mean at least as different from 50 as my sample mean is in either direction
+
+## Two- Sample t-test
+
+```{r}
+desert_bighorns <- c(32, 44, 18, 26, 50, 33, 42, 20) #Create vector of sample1
+sierra_bighorns <- c(28, 31, 40, 42, 26, 29, 31) #create vectore for sample 2
+
+t.test(x = desert_bighorns, y = sierra_bighorns)
+```
+- Gives means of both samples in the order of vectors inputted
+- Gives confidence interval for the difference of means (mean y - mean x) --> we expect the difference in means between these two samples to be between these values 95% of the time
+- t-test null = difference in means = 0, populations have equal means, alternative --> populations have unequal means 
+  - t value = how far the difference in sample means is away from the null 
+  - p-value = if these samples are drawn from populaitons with the same mean (null hypothesis), then there is a p-value chance that i could have taken two random samples and found sample means at least as different as the sample means i have here 

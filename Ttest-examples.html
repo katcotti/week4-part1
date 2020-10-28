@@ -370,7 +370,76 @@ summary {
 </div>
 
 
+<div id="confidence-intervals" class="section level2">
+<h2>1. Confidence Intervals</h2>
+<pre class="r"><code>otter_length &lt;- c(38, 41, 50, 27, 32, 41, 48, 60, 43) #Create a vector for your sample - impt in actual research look at data visually to make sure a t-distribution &amp; CI will make sense to describe pop 
 
+t.test(otter_length) #Create a t-test </code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  otter_length
+## t = 12.932, df = 8, p-value = 1.21e-06
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  34.69302 49.75142
+## sample estimates:
+## mean of x 
+##  42.22222</code></pre>
+<ul>
+<li>T.test –&gt; mean of sample (most meaningful thing from output), gives a 95% confidence interval (means in that % of samples we would expect to find the population mean within the range given)</li>
+<li>How to report: give mean with n (sample size). and standard deviation (calculate using sd), then give 95% confidence interval</li>
+<li>top 3 lines –&gt; testing that the null hypothesis is mean = 0. This doesn’t make sense/ is not meaningful!!</li>
+</ul>
+</div>
+<div id="t-test-1-sample-t-test" class="section level2">
+<h2>T-Test (1-sample t-test)</h2>
+<p>See a claim that the mean otter length = 50 inches. Use our sample above to test this claim</p>
+<pre class="r"><code>otter_test &lt;- t.test(x = otter_length, mu = 50)
+otter_test</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  otter_length
+## t = -2.3821, df = 8, p-value = 0.0444
+## alternative hypothesis: true mean is not equal to 50
+## 95 percent confidence interval:
+##  34.69302 49.75142
+## sample estimates:
+## mean of x 
+##  42.22222</code></pre>
+<ul>
+<li>tests null hypothesis that is meaningful!</li>
+<li>p-value –&gt; if the pop mean is 50 inches then there is a 4.44% chance that you could have randomly taken a sample from a population that has a mean at least as different from 50 as my sample mean is in either direction</li>
+</ul>
+</div>
+<div id="two--sample-t-test" class="section level2">
+<h2>Two- Sample t-test</h2>
+<pre class="r"><code>desert_bighorns &lt;- c(32, 44, 18, 26, 50, 33, 42, 20) #Create vector of sample1
+sierra_bighorns &lt;- c(28, 31, 40, 42, 26, 29, 31) #create vectore for sample 2
+
+t.test(x = desert_bighorns, y = sierra_bighorns)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  desert_bighorns and sierra_bighorns
+## t = 0.14825, df = 10.913, p-value = 0.8849
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -9.653212 11.046069
+## sample estimates:
+## mean of x mean of y 
+##  33.12500  32.42857</code></pre>
+<ul>
+<li>Gives means of both samples in the order of vectors inputted</li>
+<li>Gives confidence interval for the difference of means (mean y - mean x) –&gt; we expect the difference in means between these two samples to be between these values 95% of the time</li>
+<li>t-test null = difference in means = 0, populations have equal means, alternative –&gt; populations have unequal means
+<ul>
+<li>t value = how far the difference in sample means is away from the null</li>
+<li>p-value = if these samples are drawn from populaitons with the same mean (null hypothesis), then there is a p-value chance that i could have taken two random samples and found sample means at least as different as the sample means i have here</li>
+</ul></li>
+</ul>
+</div>
 
 
 
